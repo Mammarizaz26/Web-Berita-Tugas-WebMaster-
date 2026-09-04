@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="mb-3">Daftar Berita</h2>
+
+{% if daftar_berita|length == 0 %}
+    <p class="text-muted">Belum ada berita. Klik "+ Tambah Berita" untuk membuat yang pertama.</p>
+{% endif %}
+
+{% for berita in daftar_berita %}
+<div class="card mb-3">
+    <div class="card-body">
+        <h5 class="card-title">
+            <a href="{{ url_for('detail', id=berita['id']) }}">{{ berita['judul'] }}</a>
+        </h5>
+        <h6 class="card-subtitle mb-2 text-muted">
+            Oleh {{ berita['penulis'] }} &middot; {{ berita['tanggal'] }}
+        </h6>
+        <p class="card-text">
+            {{ berita['isi'][:150] }}{% if berita['isi']|length > 150 %}...{% endif %}
+        </p>
+        <a href="{{ url_for('edit', id=berita['id']) }}" class="btn btn-sm btn-warning">Edit</a>
+        <a href="{{ url_for('hapus', id=berita['id']) }}"
+           class="btn btn-sm btn-danger"
+           onclick="return confirm('Yakin mau hapus berita ini?')">Hapus</a>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

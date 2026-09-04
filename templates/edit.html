@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="mb-3">Edit Berita</h2>
+
+<form method="POST">
+    <div class="mb-3">
+        <label class="form-label">Judul</label>
+        <input type="text" name="judul" class="form-control" value="{{ berita['judul'] }}" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Penulis</label>
+        <input type="text" name="penulis" class="form-control" value="{{ berita['penulis'] }}" required>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Isi Berita</label>
+        <textarea name="isi" class="form-control" rows="6" required>{{ berita['isi'] }}</textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a href="{{ url_for('index') }}" class="btn btn-secondary">Batal</a>
+</form>
+
+{% endblock %}
