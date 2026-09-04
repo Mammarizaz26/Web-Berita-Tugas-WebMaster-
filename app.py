@@ -56,6 +56,10 @@ def tambah():
         judul = request.form["judul"]
         isi = request.form["isi"]
         penulis = request.form["penulis"]
+
+        if not judul or not isi or not penulis:
+            return render_template("tambah.html", error="semua field harus diisi")
+        
         tanggal = datetime.now().strftime("%Y-%m-%d %H:%M")
 
         conn = get_db_connection()
